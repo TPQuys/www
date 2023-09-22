@@ -19,6 +19,7 @@ public class Product {
     private String manufacturerName;
     private EnumProduct status;
 
+
     public Product(String name, String description, String unit, String manufacturerName, EnumProduct status) {
         this.name = name;
         this.description = description;

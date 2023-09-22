@@ -2,6 +2,8 @@ package vn.edu.iuh.fit.models;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -10,7 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "order_date",nullable = false)
-    private String Odate;
+    private Date date;
     @ManyToOne
     @JoinColumn(name = "emp_id")
     private Employee empId;
@@ -27,21 +29,27 @@ public class Order {
         this.id = id;
     }
 
-    public String getOdate() {
-        return Odate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setOdate(String odate) {
-        Odate = odate;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Employee getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(Employee empId) {
+        this.empId = empId;
+    }
+
+    public Order(long id, Date date, Employee empId) {
+        this.id = id;
+        this.date = date;
+        this.empId = empId;
     }
 
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", Odate='" + Odate + '\'' +
-                ", empId=" + empId +
-                '}';
-    }
 }

@@ -6,12 +6,13 @@ import jakarta.persistence.*;
 @Table(name = "order_details")
 public class OrderDetail {
     @Id
-    @OneToOne()
+    @OneToOne
     @JoinColumn (name = "order_id")
     private Order id;
 
+    @OneToOne
     @JoinColumn(name = "product_id",nullable = false)
-    private Product productId;
+    private Product product;
     @Column(nullable = false)
     private int quantity;
     @Column(nullable = false)

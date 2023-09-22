@@ -3,11 +3,12 @@ package vn.edu.iuh.fit.models;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.enums.EnumEmployee;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")

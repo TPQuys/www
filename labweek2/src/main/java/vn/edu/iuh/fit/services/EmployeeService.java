@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.services;
 
+import jakarta.ws.rs.Path;
 import vn.edu.iuh.fit.models.Employee;
 import vn.edu.iuh.fit.reponsitories.EmployeeReponsitory;
 
@@ -12,5 +13,13 @@ public class EmployeeService {
 
     public void insertEmp(Employee e){
         reponsitory.insertEmp(e);
+    }
+
+    public Employee getEmployeeById( long id) {
+        return reponsitory.findById(id);
+    }
+
+    public void deleteEmp(long id){
+        reponsitory.deleteEmp(id);
     }
 }
