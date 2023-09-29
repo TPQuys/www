@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import vn.edu.iuh.fit.enums.EnumEmployee;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "employees")
@@ -12,7 +14,7 @@ public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
-    private String employeeId;
+    private long employeeId;
     @Column(name = "full_name", length = 200,nullable = false)
     private String fullName;
     @Column(length = 150,nullable = false)
@@ -26,8 +28,8 @@ public class Employee implements Serializable {
     @Column(name = "status",nullable = false)
     private EnumEmployee status;
 
-    @OneToMany(mappedBy = "empId")
-    private List<Order> dsOr;
+//    @OneToMany(mappedBy = "empId")
+//    private List<Order> dsOr;
 
     public Employee(String fullName, String dob, String email, String phone, String address, EnumEmployee statu) {
         this.fullName = fullName;
@@ -42,11 +44,14 @@ public class Employee implements Serializable {
 
     }
 
-    public String getEmployeeId() {
+    public Employee(String name, Date dob, String email, String phone, String address) {
+    }
+
+    public long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -98,5 +103,28 @@ public class Employee implements Serializable {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"employeeId\":" + employeeId +
+                ",\"fullName\":\"" + fullName + '\"' +
+                ",\"dob\":\"" + dob + '\"' +
+                ",\"email\":\"" + email + '\"' +
+                ",\"phone\":\"" + phone + '\"' +
+                ",\"address\":\"" + address + '\"' +
+                ",\"status\":\"" + status + "\"}";
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(employeeId, employee.employeeId) && Objects.equals(fullName, employee.fullName) && Objects.equals(dob, employee.dob) && Objects.equals(email, employee.email) && Objects.equals(phone, employee.phone) && Objects.equals(address, employee.address) && status == employee.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(employeeId, fullName, dob, email, phone, address, status);
+    }
 }

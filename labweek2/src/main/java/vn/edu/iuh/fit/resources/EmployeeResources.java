@@ -12,6 +12,7 @@ public class EmployeeResources {
     private EmployeeService employeeService;
     @POST
     @Produces("application/json")
+    @Consumes("application/json")
     public Response insert(Employee e){
         employeeService.insertEmp(e);
         return Response.ok(e).build();
